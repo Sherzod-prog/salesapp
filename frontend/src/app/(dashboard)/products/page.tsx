@@ -95,7 +95,7 @@ export default function ProductsPage() {
   useEffect(() => {
     if (!token) return;
     load();
-    apiFetch<Category[]>("/categories", { token }).then(setCategories).catch(() => {});
+    apiFetch<Category[]>("/categories", { token }).then(setCategories).catch(() => { });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token]);
 
@@ -246,7 +246,7 @@ export default function ProductsPage() {
                         <SelectContent>
                           <SelectItem value={NO_CATEGORY}>— Tanlanmagan —</SelectItem>
                           {categories.map((category) => (
-                            <SelectItem key={category.id} value={category.id}>
+                            <SelectItem key={category.id} value={category.name}>
                               {category.name}
                             </SelectItem>
                           ))}

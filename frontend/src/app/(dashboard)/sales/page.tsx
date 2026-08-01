@@ -60,7 +60,7 @@ export default function SalesPage() {
   useEffect(() => {
     if (!token) return;
     loadSales();
-    apiFetch<Product[]>("/products", { token }).then(setProducts).catch(() => {});
+    apiFetch<Product[]>("/products", { token }).then(setProducts).catch(() => { });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token]);
 
@@ -137,7 +137,7 @@ export default function SalesPage() {
                   {products
                     .filter((p) => p.isActive)
                     .map((product) => (
-                      <SelectItem key={product.id} value={product.id}>
+                      <SelectItem key={product.id} value={product.name}>
                         {product.name} — {formatMoney(product.sellPrice)}
                       </SelectItem>
                     ))}
