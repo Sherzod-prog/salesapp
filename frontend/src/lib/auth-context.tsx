@@ -2,12 +2,13 @@
 
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 import { apiFetch } from "./api";
+import type { Role } from "./types";
 
 export interface AuthUser {
   id: string;
   fullName: string;
   email: string;
-  role: "ADMIN" | "CASHIER";
+  role: Role;
 }
 
 interface LoginResponse {

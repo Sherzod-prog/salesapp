@@ -51,6 +51,7 @@ import { apiFetch, ApiError } from "@/lib/api";
 import { useAuth } from "@/lib/auth-context";
 import { formatMoney, formatQuantity } from "@/lib/format";
 import type { Category, Product } from "@/lib/types";
+import { UNITS } from "@/lib/units";
 import { toast } from "sonner";
 
 const NO_CATEGORY = "none";
@@ -201,12 +202,22 @@ export default function ProductsPage() {
                         />
                       </div>
                       <div className="flex flex-col gap-2">
-                        <Label htmlFor="unit">O&apos;lchov birligi</Label>
-                        <Input
-                          id="unit"
+                        <Label>O&apos;lchov birligi</Label>
+                        <Select
                           value={form.unit}
-                          onChange={(e) => setForm({ ...form, unit: e.target.value })}
-                        />
+                          onValueChange={(value) => setForm({ ...form, unit: value ?? "dona" })}
+                        >
+                          <SelectTrigger>
+                            <SelectValue placeholder="Birlik tanlang" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {UNITS.map((unit) => (
+                              <SelectItem key={unit} value={unit}>
+                                {unit}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
                       </div>
                     </div>
                     <div className="grid grid-cols-2 gap-4">
@@ -246,7 +257,7 @@ export default function ProductsPage() {
                         <SelectContent>
                           <SelectItem value={NO_CATEGORY}>— Tanlanmagan —</SelectItem>
                           {categories.map((category) => (
-                            <SelectItem key={category.id} value={category.name}>
+                            <SelectItem key={category.id} value={category.id}>
                               {category.name}
                             </SelectItem>
                           ))}

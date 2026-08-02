@@ -142,7 +142,7 @@ export default function StockInPage() {
               }}
             >
               <DialogTrigger render={<Button />}>Yangi kirim</DialogTrigger>
-              <DialogContent className="bg-green-100">
+              <DialogContent className="min-w-3xl">
                 <DialogHeader>
                   <DialogTitle>Yangi kirim hujjati</DialogTitle>
                 </DialogHeader>

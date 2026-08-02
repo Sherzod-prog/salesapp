@@ -10,6 +10,7 @@ datasource db {
 enum Role {
   ADMIN
   CASHIER
+  MANAGER
 }
 
 enum PaymentMethod {
@@ -54,31 +55,31 @@ model Supplier {
 }
 
 model Product {
-  id         String   @id @default(uuid())
+  id         String    @id @default(uuid())
   name       String
-  sku        String?  @unique
-  unit       String   @default("dona")
-  sellPrice  Decimal  @db.Decimal(14, 2)
-  minStock   Decimal  @default(0) @db.Decimal(14, 3)
-  isActive   Boolean  @default(true)
+  sku        String?   @unique
+  unit       String    @default("dona")
+  sellPrice  Decimal   @db.Decimal(14, 2)
+  minStock   Decimal   @default(0) @db.Decimal(14, 3)
+  isActive   Boolean   @default(true)
   categoryId String?
   category   Category? @relation(fields: [categoryId], references: [id])
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
 
-  stock         Stock?
-  stockInItems  StockInItem[]
-  saleItems     SaleItem[]
+  stock        Stock?
+  stockInItems StockInItem[]
+  saleItems    SaleItem[]
 
   @@map("products")
 }
 
 // Har bir mahsulotning joriy ombor qoldig'i va o'rtacha tannarxi (weighted average cost)
 model Stock {
-  productId String  @id
-  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
-  quantity  Decimal @default(0) @db.Decimal(14, 3)
-  avgCost   Decimal @default(0) @db.Decimal(14, 2)
+  productId String   @id
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  quantity  Decimal  @default(0) @db.Decimal(14, 3)
+  avgCost   Decimal  @default(0) @db.Decimal(14, 2)
   updatedAt DateTime @updatedAt
 
   @@map("stocks")
@@ -86,14 +87,14 @@ model Stock {
 
 // Tovar kirimi (partiya) hujjati
 model StockIn {
-  id         String   @id @default(uuid())
+  id         String    @id @default(uuid())
   supplierId String?
   supplier   Supplier? @relation(fields: [supplierId], references: [id])
   userId     String
-  user       User     @relation(fields: [userId], references: [id])
+  user       User      @relation(fields: [userId], references: [id])
   note       String?
-  totalCost  Decimal  @default(0) @db.Decimal(14, 2)
-  createdAt  DateTime @default(now())
+  totalCost  Decimal   @default(0) @db.Decimal(14, 2)
+  createdAt  DateTime  @default(now())
 
   items StockInItem[]
 
@@ -101,13 +102,13 @@ model StockIn {
 }
 
 model StockInItem {
-  id         String   @id @default(uuid())
-  stockInId  String
-  stockIn    StockIn  @relation(fields: [stockInId], references: [id], onDelete: Cascade)
-  productId  String
-  product    Product  @relation(fields: [productId], references: [id])
-  quantity   Decimal  @db.Decimal(14, 3)
-  costPrice  Decimal  @db.Decimal(14, 2)
+  id        String  @id @default(uuid())
+  stockInId String
+  stockIn   StockIn @relation(fields: [stockInId], references: [id], onDelete: Cascade)
+  productId String
+  product   Product @relation(fields: [productId], references: [id])
+  quantity  Decimal @db.Decimal(14, 3)
+  costPrice Decimal @db.Decimal(14, 2)
 
   @@map("stock_in_items")
 }
@@ -128,14 +129,14 @@ model Sale {
 }
 
 model SaleItem {
-  id          String  @id @default(uuid())
-  saleId      String
-  sale        Sale    @relation(fields: [saleId], references: [id], onDelete: Cascade)
-  productId   String
-  product     Product @relation(fields: [productId], references: [id])
-  quantity    Decimal @db.Decimal(14, 3)
-  sellPrice   Decimal @db.Decimal(14, 2)
-  costPrice   Decimal @db.Decimal(14, 2)
+  id        String  @id @default(uuid())
+  saleId    String
+  sale      Sale    @relation(fields: [saleId], references: [id], onDelete: Cascade)
+  productId String
+  product   Product @relation(fields: [productId], references: [id])
+  quantity  Decimal @db.Decimal(14, 3)
+  sellPrice Decimal @db.Decimal(14, 2)
+  costPrice Decimal @db.Decimal(14, 2)
 
   @@map("sale_items")
 }

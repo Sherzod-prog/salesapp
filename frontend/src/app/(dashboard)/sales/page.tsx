@@ -137,8 +137,9 @@ export default function SalesPage() {
                   {products
                     .filter((p) => p.isActive)
                     .map((product) => (
-                      <SelectItem key={product.id} value={product.name}>
-                        {product.name} — {formatMoney(product.sellPrice)}
+                      <SelectItem key={product.id} value={product.id}   >
+                        {product.name}
+                        {/* {product.name} — {formatMoney(product.sellPrice)} */}
                       </SelectItem>
                     ))}
                 </SelectContent>
@@ -169,8 +170,8 @@ export default function SalesPage() {
                     <TableCell>
                       <Input
                         type="number"
-                        min={0.001}
-                        step="0.001"
+                        min={1}
+                        step="1"
                         value={line.quantity}
                         onChange={(e) => updateLine(line.productId, { quantity: e.target.value })}
                       />
@@ -179,7 +180,7 @@ export default function SalesPage() {
                       <Input
                         type="number"
                         min={0}
-                        step="0.01"
+                        step="1"
                         value={line.sellPrice}
                         onChange={(e) => updateLine(line.productId, { sellPrice: e.target.value })}
                       />

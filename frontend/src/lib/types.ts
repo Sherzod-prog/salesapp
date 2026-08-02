@@ -1,3 +1,14 @@
+export type Role = "ADMIN" | "CASHIER" | "MANAGER";
+
+export interface User {
+  id: string;
+  fullName: string;
+  email: string;
+  role: Role;
+  isActive: boolean;
+  createdAt: string;
+}
+
 export interface Category {
   id: string;
   name: string;

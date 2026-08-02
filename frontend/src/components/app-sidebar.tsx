@@ -20,6 +20,7 @@ const NAV_ITEMS: NavItem[] = [
   { href: "/inventory", label: "Ombor qoldig'i" },
   { href: "/sales", label: "Sotuvlar" },
   { href: "/reports", label: "Hisobotlar", adminOnly: true },
+  { href: "/users", label: "Foydalanuvchilar", adminOnly: true },
 ];
 
 export function AppSidebar({ user }: { user: AuthUser }) {
