@@ -4,23 +4,25 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import type { AuthUser } from "@/lib/auth-context";
+import { WarehouseIcon, HomeIcon, PackageIcon, ListIcon, TruckIcon, InboxIcon, ShoppingCartIcon, BarChartIcon, UsersIcon } from "lucide-react";
 
 interface NavItem {
+  icon: React.ReactNode;
   href: string;
   label: string;
   adminOnly?: boolean;
 }
 
 const NAV_ITEMS: NavItem[] = [
-  { href: "/", label: "Bosh sahifa" },
-  { href: "/products", label: "Mahsulotlar" },
-  { href: "/categories", label: "Kategoriyalar" },
-  { href: "/suppliers", label: "Yetkazib beruvchilar", adminOnly: true },
-  { href: "/stock-in", label: "Kirim", adminOnly: true },
-  { href: "/inventory", label: "Ombor qoldig'i" },
-  { href: "/sales", label: "Sotuvlar" },
-  { href: "/reports", label: "Hisobotlar", adminOnly: true },
-  { href: "/users", label: "Foydalanuvchilar", adminOnly: true },
+  { icon: <HomeIcon />, href: "/", label: "Bosh sahifa" },
+  { icon: <PackageIcon />, href: "/products", label: "Mahsulotlar" },
+  { icon: <ListIcon />, href: "/categories", label: "Kategoriyalar" },
+  { icon: <TruckIcon />, href: "/suppliers", label: "Yetkazib beruvchilar", adminOnly: true },
+  { icon: <InboxIcon />, href: "/stock-in", label: "Kirim", adminOnly: true },
+  { icon: <WarehouseIcon />, href: "/inventory", label: "Ombor qoldig'i" },
+  { icon: <ShoppingCartIcon />, href: "/sales", label: "Sotuvlar" },
+  { icon: <BarChartIcon />, href: "/reports", label: "Hisobotlar", adminOnly: true },
+  { icon: <UsersIcon />, href: "/users", label: "Foydalanuvchilar", adminOnly: true },
 ];
 
 export function AppSidebar({ user }: { user: AuthUser }) {
@@ -45,8 +47,10 @@ export function AppSidebar({ user }: { user: AuthUser }) {
                   ? "bg-zinc-900 text-white dark:bg-zinc-50 dark:text-black"
                   : "text-zinc-700 hover:bg-zinc-100 dark:text-zinc-300 dark:hover:bg-zinc-900",
               )}
-            >
-              {item.label}
+            ><div className="flex items-center gap-2">
+                {item.icon}
+                {item.label}
+              </div>
             </Link>
           );
         })}
