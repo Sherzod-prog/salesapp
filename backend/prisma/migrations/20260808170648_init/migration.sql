@@ -1,5 +1,5 @@
 -- CreateEnum
-CREATE TYPE "Role" AS ENUM ('ADMIN', 'CASHIER');
+CREATE TYPE "Role" AS ENUM ('ADMIN', 'CASHIER', 'MANAGER');
 
 -- CreateEnum
 CREATE TYPE "PaymentMethod" AS ENUM ('CASH', 'CARD');

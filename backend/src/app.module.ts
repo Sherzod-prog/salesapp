@@ -9,7 +9,8 @@ import { ProductsModule } from './products/products.module';
 import { StockInModule } from './stock-in/stock-in.module';
 import { InventoryModule } from './inventory/inventory.module';
 import { SalesModule } from './sales/sales.module';
-import { ReportsModule } from './reports/reports.module';
+import { ReportsModule } from './reports/reports.module'; 
+
 
 @Module({
   imports: [
