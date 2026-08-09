@@ -191,7 +191,7 @@ export default function StockInPage() {
                               </SelectTrigger>
                               <SelectContent>
                                 {products.map((product) => (
-                                  <SelectItem key={product.id} value={product.name}>
+                                  <SelectItem key={product.id} value={product.id}>
                                     {product.name}
                                   </SelectItem>
                                 ))}
@@ -202,8 +202,8 @@ export default function StockInPage() {
                             {index === 0 && <Label className="text-xs">Miqdor</Label>}
                             <Input
                               type="number"
-                              min={0.001}
-                              step="0.001"
+                              min={1}
+                              step="1"
                               required
                               value={row.quantity}
                               onChange={(e) => updateItem(index, { quantity: e.target.value })}
