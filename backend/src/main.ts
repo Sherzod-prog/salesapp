@@ -18,6 +18,6 @@ async function bootstrap() {
   const port = process.env.PORT ?? 3000;
   await app.listen(port);
   // eslint-disable-next-line no-console
-  console.log(`Backend http://localhost:${port}/api manzilida ishga tushdi`);
+  console.log(`Backend ${port} da ishga tushdi`);
 }
 bootstrap();

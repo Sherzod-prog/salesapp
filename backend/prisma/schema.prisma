@@ -3,9 +3,9 @@ datasource db {
 }
 
 generator client {
-  provider  = "prisma-client-js"
-  url       = env("DATABASE_URL")
-  directUrl = env("DIRECT_URL")
+  provider = "prisma-client-js"
+  url      = env("DATABASE_URL")
+  // directUrl = env("DIRECT_URL")
   // output   = "../generated/prisma"
 }
 
